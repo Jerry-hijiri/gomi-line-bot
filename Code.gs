@@ -6,7 +6,7 @@
  */
 const EVENING_HOUR = 20;   // 前日の通知（時）
 const MORNING_HOUR = 9;    // 当日の通知（時）。収集は朝8:30まで
-const MORNING_ENABLED = true;
+const MORNING_ENABLED = false; // 無料枠(月200通)に収めるため前日のみ
 const PLACE = 'SEKIYA.so前';
 const IMAGE_URL = 'https://jerry-hijiri.github.io/gomi-line-bot/calendar.jpg';
 const PREVIEW_URL = 'https://jerry-hijiri.github.io/gomi-line-bot/calendar_preview.jpg';
@@ -298,7 +298,7 @@ function doPost(e) {
           method: 'post', contentType: 'application/json', muteHttpExceptions: true,
           headers: { Authorization: 'Bearer ' + props.getProperty('LINE_TOKEN') },
           payload: JSON.stringify({ replyToken: ev.replyToken, messages: [{ type: 'text',
-            text: 'ゴミ出し通知を設定しました🗑️\n収集日の前日' + EVENING_HOUR + '時と当日' + MORNING_HOUR + '時にお知らせします。' }] }),
+            text: 'ゴミ出し通知を設定しました🗑️\n収集日の前日' + EVENING_HOUR + '時にお知らせします。' }] }),
         });
       }
     }
